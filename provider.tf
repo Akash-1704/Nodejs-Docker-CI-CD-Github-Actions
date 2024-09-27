@@ -2,7 +2,7 @@ terraform {
   cloud {
     organization = "skyfire-1704"
     workspaces {
-      name = "ecs-fargate-github"
+      name = "Nodejs-CI-CD-Github-Actions"
     }
   }
   required_providers {
