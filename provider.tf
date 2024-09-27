@@ -1,6 +1,6 @@
 terraform {
   cloud {
-    organization = "skyfire-1704"
+    organization = "sky-1704"
     workspaces {
       name = "Nodejs-CI-CD-Github-Actions"
     }
