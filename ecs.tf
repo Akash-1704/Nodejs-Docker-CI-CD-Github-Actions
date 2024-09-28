@@ -58,6 +58,13 @@ resource "aws_ecs_service" "main" {
     container_name   = var.aws_ecr_repository
   }
 
+  # Ignore changes to the task definition to prevent Terraform from reverting updates made by ECS workflow
+  lifecycle {
+    ignore_changes = [
+      task_definition
+    ]
+  }
+
   depends_on = [
     aws_ecr_repository.demo_ecs_app,
     aws_ecs_task_definition.demo_ecs_app_def,
