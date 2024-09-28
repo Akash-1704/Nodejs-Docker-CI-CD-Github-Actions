@@ -6,7 +6,7 @@ var app = express();
 app.set("port", process.env.PORT || 80);
 
 app.get('/', function(req, res){
-  res.send('Hello World to Cloud Technology & DevOps World !!!');
+  res.send('Hello to Cloud Technology & DevOps World !!!');
 });
 
 
