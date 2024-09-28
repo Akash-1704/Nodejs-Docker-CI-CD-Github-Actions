@@ -12,6 +12,9 @@
   },
   "author": "",
   "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "bugs": {
     "url": "https://github.com/Akash-1704/ECS-Fargate-Deployment-Pipeline-Terraform/issues"
   },
