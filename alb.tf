@@ -34,3 +34,9 @@ resource "aws_alb_listener" "front_end" {
     type             = "forward"
   }
 }
+
+# Output for the ALB DNS name
+output "alb_dns_name" {
+  description = "DNS name of the ALB"
+  value       = aws_alb.main.dns_name
+}
