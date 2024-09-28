@@ -26,9 +26,12 @@
 
 name: Deploy to Amazon ECS
 
+# Trigger the ECS workflow when the Terraform workflow completes successfully
 on:
-  push:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ["Terraform"]
+    types:
+      - completed
 
 env:
   AWS_REGION: ap-south-1                   # set this to your preferred AWS region, e.g. us-west-1
