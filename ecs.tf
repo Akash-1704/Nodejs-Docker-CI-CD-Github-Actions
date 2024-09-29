@@ -2,6 +2,7 @@ resource "aws_ecs_cluster" "ecs-cluster" {
   name = var.aws_ecs_cluster_name
 }
 
+/*
 data "template_file" "demo_ecs_app" {
   template = file("./templates/demo_ecs_app.json.tpl")
   vars = {
@@ -13,6 +14,8 @@ data "template_file" "demo_ecs_app" {
     name           = var.aws_ecr_repository
   }
 }
+
+*/
 
 resource "aws_ecs_task_definition" "demo_ecs_app_def" {
 

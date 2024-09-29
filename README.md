@@ -1,6 +1,6 @@
 **ECS Fargate Terraform Deployment Pipeline**
 
-This project establishes a seamless deployment pipeline for a web application using GitHub Actions for building and pushing Docker images to Amazon ECR upon changes pushed to the main branch, coupled with Terraform workflows to orchestrate the infrastructure setup on AWS ECS Fargate including VPC, Load Balancer, Target Group, Security Groups, ECS Cluster, ECS Service, ECS Task Definition, ECR, and IAM Role for ECS.
+This project establishes a seamless deployment pipeline for a web application using GitHub Actions for building and pushing Docker images to Amazon ECR upon changes pushed to the main branch, coupled with Terraform workflows to orchestrate the infrastructure setup on AWS ECS Fargate.
 
 **Prerequisites**
 * GitHub repository for the application code.
@@ -10,20 +10,33 @@ This project establishes a seamless deployment pipeline for a web application us
 
 **Setup Instructions**
 
-1. Create a workspace in Terraform Cloud account and configure API-driven workflow.
+1. Initialize the project & Create index.js with a basic endpoint
+
+   npm init -y
+
+    ![alt text](image.png)
+
+2. Run the below commands to Install Dependencies & Run the Application locally.
+
+   npm install
+   npm start
+
+   http://localhost:80 (Test your application on a browser)
+
+3. Create a workspace in Terraform Cloud account and configure API-driven workflow.
 
 
     ![Selection_7667](https://github.com/Akash-1704/ecs-fargate-terraform/assets/90324028/79d497a2-76b5-44fa-9015-05a2232635a9)
 
 
 
-2. Add AWS credentials as environment variables in Terraform Cloud workspace.
+4. Add AWS credentials as environment variables in Terraform Cloud workspace.
 
 
    ![Selection_7669](https://github.com/Akash-1704/ecs-fargate-terraform/assets/90324028/9ec20004-4cc2-474f-ace9-15ef0701cc73)
 
 
-3. Generate an API token in Terraform Cloud user settings.
+5. Generate an API token in Terraform Cloud user settings.
 (Go to User settings -> Tokens and Create an api token)
 
 
@@ -31,7 +44,7 @@ This project establishes a seamless deployment pipeline for a web application us
 
 
 
-4. Store AWS credentials and Terraform API token securely as GitHub repository secrets.
+6. Store AWS credentials and Terraform API token securely as GitHub repository secrets.
 (Go to your Github repo -> Settings -> Secrets -> Actions. Create a new repo secrets and add IAM user’s Access key id & Secret access key along with the terraform Api token we created earlier.)
 
     These repository secrets will be defined in our workflows which we will create next in aws.yaml & terraform.yaml files. These workflows will use the secrets for authentication while deploying and accessing the aws infrastructure.
@@ -43,7 +56,7 @@ This project establishes a seamless deployment pipeline for a web application us
 
 
 
-5. Configure GitHub Actions workflows for ECS and Terraform in the repository.
+7. Configure GitHub Actions workflows for ECS and Terraform in the repository.
 (Go to Actions -> New Workflow and search for ecs. Click on configure and commit this file to your main branch. Similarly, Create a workflow for terraform.)
 
 
@@ -55,20 +68,19 @@ This project establishes a seamless deployment pipeline for a web application us
 
 
 
-6. Edit necessary values in workflow files and other configuration files as per instructions provided below.
+6. Edit necessary values in workflow files and create terraform configuration files of AWS resources mentioned below.
 
 
 **Resources Needed**
 
-* VPC
-* Load Balancer
-* Target Group
-* Security Group
-* IAM Role for ECS
-* ECS Cluster
-* ECS Service
-* ECS Task Definition
-* ECR Repo
+* VPC (vpc.tf)
+* Load Balancer (alb.tf)
+* Security Group (sg.tf)
+* IAM Role for ECS (iam.tf)
+* ECS Cluster, ECS Service, ECS Task Definition & ECR Repo (ecs.tf)
+* Variables (variable.tf)
+* 
+* 
 
 **Usage**
 
