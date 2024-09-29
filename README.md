@@ -22,7 +22,7 @@ This project automates deployment of a Node.js web application using GitHub Acti
 
 
 
-
+<br><br>
 
 
 #### Create a Test file in test directory which checks if the root endpoint (/) returns the expected message  
@@ -42,7 +42,7 @@ This project automates deployment of a Node.js web application using GitHub Acti
 
 
 
-   
+   <br><br>
 
 #### Run the below commands to Install Dependencies & Run the Application locally.
 
@@ -59,7 +59,7 @@ This project automates deployment of a Node.js web application using GitHub Acti
 
 
 
-
+<br><br>
 
 #### Create Dockerfile for our application as shown below
 
