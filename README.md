@@ -11,11 +11,15 @@ This project automates deployment of a Node.js web application using GitHub Acti
 
 **Setup Instructions**
 
-1. Initialize the project & create index.js with a basic endpoint on local machine.
+#### Initialize the project & create index.js with a basic endpoint on local machine.
 
-**Command:** `npm init -y`
+   **Command:** `npm init -y`
+
+
 
     ![alt text](image.png)
+
+
 
 
 2. Create a Test file in test directory which checks if the root endpoint (/) returns the expected message  
@@ -25,21 +29,22 @@ This project automates deployment of a Node.js web application using GitHub Acti
 
    Install testing dependencies supertest and jest:
 
-**Command:** `npm install --save-dev jest supertest`
+   **Command:** `npm install --save-dev jest supertest`
+
    
    To run the test, use the command:
 
-**Command:** `npm test`
+   **Command:** `npm test`
 
    
 
 3. Run the below commands to Install Dependencies & Run the Application locally.
 
 
-**Command:** `npm install`
+   **Command:** `npm install`
 
 
-**Command:** `npm start`
+   **Command:** `npm start`
 
    
 
@@ -52,30 +57,26 @@ This project automates deployment of a Node.js web application using GitHub Acti
 
    ![alt text](image-2.png)
 
-   FROM node:20: We are using the official Node.js version 20 image for our application
+  **FROM node:20:** We are using the official Node.js version 20 image for our application
 
-   ENV PORT=80: This sets the environment variable PORT to 80. This is useful for making our code dynamic and to use this in our index.js setup.
+  **ENV PORT=80:** This sets the environment variable PORT to 80. This is useful for making our code dynamic and to use this in our index.js setup.
 
-   WORKDIR /usr/src/app: This sets the working directory inside the container to /usr/src/app. All subsequent commands will be run in this directory.
+  **WORKDIR /usr/src/app:** This sets the working directory inside the container to /usr/src/app. All subsequent commands will be run in this directory.
 
-   COPY package.json /usr/src/app/: This copies only the package*.json files to the container. It allows you to install dependencies (npm install) without copying unnecessary files.
+  **COPY package.json /usr/src/app/:** This copies only the package*.json files to the container. It allows you to install dependencies (npm install) without copying unnecessary files.
 
-   RUN npm install: This installs the dependencies using package.json which was copied earlier, this step will only re-run if dependencies change, optimizing the Docker build process.
+  **RUN npm install:** This installs the dependencies using package.json which was copied earlier, this step will only re-run if dependencies change, optimizing the Docker build process.
 
-   COPY index.js /usr/src/app: This copies your source code(index.js) to the container.
+  **COPY index.js /usr/src/app:** This copies your source code(index.js) to the container.
 
-   EXPOSE $PORT: This exposes the port set by the PORT environment variable (which defaults to 80).
+  **EXPOSE $PORT:** This exposes the port set by the PORT environment variable (which defaults to 80).
 
-   CMD [ "npm", "start" ]: This runs the start script from our package.json.
+  **CMD [ "npm", "start" ]:** This runs the start script from our package.json.
 
 
 
 
 5. Create a workspace in Terraform Cloud account and configure API-driven workflow.
-
-
-    ![Selection_7667](https://github.com/Akash-1704/ecs-fargate-terraform/assets/90324028/79d497a2-76b5-44fa-9015-05a2232635a9)
-
 
 
 6. Add AWS credentials as environment variables in Terraform Cloud workspace.
@@ -85,15 +86,11 @@ This project automates deployment of a Node.js web application using GitHub Acti
 
 
 7. Generate an API token in Terraform Cloud user settings.
-(Go to User settings -> Tokens and Create an api token)
-
-
-   ![Selection_7671](https://github.com/Akash-1704/ecs-fargate-terraform/assets/90324028/464ee212-b6a0-445f-abdf-0da25659bf1f)
-
+(Go to User settings -> Tokens and Create an API token)
 
 
 8. Store AWS credentials and Terraform API token securely as GitHub repository secrets.
-(Go to your Github repo -> Settings -> Secrets -> Actions. Create a new repo secrets and add IAM user’s Access key id & Secret access key along with the terraform Api token we created earlier.)
+(Go to your Github repo -> Settings -> Secrets -> Actions. Create a new repo secrets and add IAM user’s Access key id & Secret access key along with the Terraform API token we created earlier.)
 
     These repository secrets will be defined in our workflows which we will create next in aws.yaml & terraform.yaml files. These workflows will use the secrets for authentication while deploying and accessing the aws infrastructure.
 
@@ -108,12 +105,9 @@ This project automates deployment of a Node.js web application using GitHub Acti
 (Go to Actions -> New Workflow and search for ecs. Click on configure and commit this file to your main branch. Similarly, Create a workflow for terraform.)
 
 
+    ![alt text](image-5.png) 
 
-   ![Selection_7675](https://github.com/Akash-1704/ecs-fargate-terraform/assets/90324028/1a3660d1-2513-4167-b7f3-ab9c24cf960a)
-
-
-   ![Selection_7676](https://github.com/Akash-1704/ecs-fargate-terraform/assets/90324028/200cf752-dbf4-4375-a3d7-de39ba686390)
-
+  
 
 10. GitHub Actions Workflow: Deploy to Amazon ECS
 
