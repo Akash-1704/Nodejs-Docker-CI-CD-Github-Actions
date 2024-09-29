@@ -1,10 +1,6 @@
 const request = require('supertest');
 const app = require('../index');
 
-afterAll((done) => {
-  server.close(); // Close the server after tests
-  done();
-});
 
 
 describe('GET /', () => {
