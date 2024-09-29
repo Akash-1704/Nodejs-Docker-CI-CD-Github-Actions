@@ -9,7 +9,7 @@ This project automates deployment of a Node.js web application using GitHub Acti
 * IAM user with Admin access for accessing AWS resources via Terraform.
 * AWS credentials (Access Key ID & Secret Access Key) and Terraform API token stored securely as GitHub repository secrets.
 
-**Setup Instructions**
+### Setup Instructions
 
 #### Initialize the project & create index.js with a basic endpoint on local machine.
 
