@@ -79,8 +79,7 @@ This project establishes a seamless deployment pipeline for a web application us
 * IAM Role for ECS (iam.tf)
 * ECS Cluster, ECS Service, ECS Task Definition & ECR Repo (ecs.tf)
 * Variables (variable.tf)
-* 
-* 
+* Terraform Cloud & AWS (provider.tf)
 
 **Usage**
 
@@ -89,12 +88,13 @@ This project establishes a seamless deployment pipeline for a web application us
 2. Replace/Update the following values in the project files as instructed:
 
 * Edit aws.yaml file (ECS workflow) and update values in the env block as per your requirement.
+  Set the condition block to trigger when when the Terraform workflow completes successfully. 
+
+    ![alt text](image-1.png)
 
 
-   ![Selection_7677](https://github.com/Akash-1704/ecs-fargate-terraform/assets/90324028/3fd58414-68c5-4089-a7f2-4e2e8d2e29da)
 
-
-* Edit terraform.yaml file (Terraform workflow) and comment out the last action for Terraform destroy. (Line 96)
+* Edit terraform.yaml file (Terraform workflow) and comment out the last action for Terraform destroy. 
 
 
    ![Selection_7678](https://github.com/Akash-1704/ecs-fargate-terraform/assets/90324028/fc7a4357-396f-40b8-a51c-4eae2cb24954)
