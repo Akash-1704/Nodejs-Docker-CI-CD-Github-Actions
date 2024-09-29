@@ -17,8 +17,8 @@ app.get('/', function(req, res){
 
 */
 const PORT = process.env.NODE_ENV === 'test' ? 3000 : (process.env.PORT || 80);
-var server = app.listen(app.get("port"), function () {
-
+var server = app.listen(PORT, function () {
+  
   var host = server.address().address
   var port = server.address().port
 
