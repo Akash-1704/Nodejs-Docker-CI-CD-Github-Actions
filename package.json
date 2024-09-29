@@ -4,7 +4,8 @@
   "description": "Example of Node.js REST API on Docker",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/Akash-1704/ECS-Fargate-Deployment-Pipeline-Terraform/issues"
   },
-  "homepage": "https://github.com/Akash-1704/ECS-Fargate-Deployment-Pipeline-Terraform#readme"
+  "homepage": "https://github.com/Akash-1704/ECS-Fargate-Deployment-Pipeline-Terraform#readme",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
 }

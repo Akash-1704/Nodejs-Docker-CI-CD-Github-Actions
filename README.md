@@ -19,9 +19,17 @@ This project establishes a seamless deployment pipeline for a web application us
 2. Run the below commands to Install Dependencies & Run the Application locally.
 
    npm install
+
    npm start
 
    http://localhost:80 (Test your application on a browser)
+
+3. Create Dockerfile for our application as shown below
+
+
+   ![alt text](image-2.png)
+
+
 
 3. Create a workspace in Terraform Cloud account and configure API-driven workflow.
 
