@@ -1,4 +1,4 @@
-**ECS Fargate Terraform Deployment Pipeline**
+### ECS Fargate Terraform Deployment Pipeline using GitHub Actions
 
 This project automates deployment of a Node.js web application using GitHub Actions, ECS Fargate, and Terraform. Changes pushed to the GitHub repository trigger Docker image builds and uploads to ECR. The Terraform workflow manages AWS infrastructure like ECS clusters, VPCs, load balancers, and security groups. GitHub Actions workflows handle both infrastructure provisioning and application deployment, ensuring efficient delivery through Terraform Cloud and ECS Fargate. The pipeline updates ECS task definitions and redeploys with the latest image automatically.
 
@@ -12,18 +12,19 @@ This project automates deployment of a Node.js web application using GitHub Acti
 
 ### Setup Instructions
 
-#### Initialize the project & create index.js with a basic endpoint on local machine.
+> #### Initialize the project & create index.js with a basic endpoint on local machine.
 
    **Command:** `npm init -y`
 
 
-
-    ![alt text](image.png)
-
+  ![alt text](image.png)
 
 
 
-#### Create a Test file in test directory which checks if the root endpoint (/) returns the expected message  
+<br><br>
+
+
+>#### Create a Test file in test directory which checks if the root endpoint (/) returns the expected message  <br><br>
 
 
    ![alt text](image-3.png)
@@ -32,14 +33,14 @@ This project automates deployment of a Node.js web application using GitHub Acti
 
    **Command:** `npm install --save-dev jest supertest`
 
-   
    To run the test, use the command:
 
    **Command:** `npm test`
 
-   
 
-#### Run the below commands to Install Dependencies & Run the Application locally.
+   <br><br>
+
+>#### Run the below commands to Install Dependencies & Run the Application locally.
 
 
    **Command:** `npm install`
@@ -53,7 +54,10 @@ This project automates deployment of a Node.js web application using GitHub Acti
 
 
 
-#### Create Dockerfile for our application as shown below
+
+<br><br>
+
+>#### Create Dockerfile for our application as shown below
 
 
    ![alt text](image-2.png)
@@ -76,22 +80,27 @@ This project automates deployment of a Node.js web application using GitHub Acti
    **CMD [ "npm", "start" ]:** This runs the start script from our package.json.
 
 
+   <br><br>
 
 
-#### Create a workspace in Terraform Cloud account and configure API-driven workflow.
+>#### Create a workspace in Terraform Cloud account and configure API-driven workflow.
 
+   <br><br>
 
-#### Add AWS credentials as environment variables in Terraform Cloud workspace.
+>#### Add AWS credentials as environment variables in Terraform Cloud workspace.    <br><br>
+
 
 
    ![Selection_7669](https://github.com/Akash-1704/ecs-fargate-terraform/assets/90324028/9ec20004-4cc2-474f-ace9-15ef0701cc73)
 
+   <br><br>
 
-#### Generate an API token in Terraform Cloud user settings.
+>#### Generate an API token in Terraform Cloud user settings.
 (Go to User settings -> Tokens and Create an API token)
 
+   <br><br>
 
-#### Store AWS credentials and Terraform API token securely as GitHub repository secrets.
+>#### Store AWS credentials and Terraform API token securely as GitHub repository secrets.
 (Go to your Github repo -> Settings -> Secrets -> Actions. Create a new repo secrets and add IAM user’s Access key id & Secret access key along with the Terraform API token we created earlier.)
 
     These repository secrets will be defined in our workflows which we will create next in aws.yaml & terraform.yaml files. These workflows will use the secrets for authentication while deploying and accessing the aws infrastructure.
@@ -102,16 +111,18 @@ This project automates deployment of a Node.js web application using GitHub Acti
 
 
 
+   <br><br>
 
-#### Configure GitHub Actions workflows for ECS and Terraform in the repository.
+>#### Configure GitHub Actions workflows for ECS and Terraform in the repository.
 (Go to Actions -> New Workflow and search for ecs. Click on configure and commit this file to your main branch. Similarly, Create a workflow for terraform.)
 
 
-    ![alt text](image-5.png) 
+  ![alt text](image-5.png) 
 
   
+   <br><br>
 
-#### GitHub Actions Workflow: Deploy to Amazon ECS
+>#### GitHub Actions Workflow: Deploy to Amazon ECS
 
     This workflow automates the deployment of our application to Amazon ECS. It is triggered upon the successful completion of the "Terraform" workflow.
 
@@ -121,8 +132,9 @@ This project automates deployment of a Node.js web application using GitHub Acti
    - **ECS Deployment:** Updates the ECS task definition with the new Docker image and deploys it to ECS.
 
     The deployment uses environment variables for configuring AWS, ECS services, clusters, and the container.
+   <br><br>
 
-#### GitHub Actions Workflow: Terraform
+>#### GitHub Actions Workflow: Terraform
 
     This workflow automates the deployment and management of infrastructure using Terraform.
 
@@ -136,8 +148,9 @@ This project automates deployment of a Node.js web application using GitHub Acti
    - **Output ALB DNS:** Displays the ALB DNS name after execution.
 
 
+   <br><br>
 
-#### Edit necessary values in workflow files and create terraform configuration files of AWS resources mentioned below.
+>#### Edit necessary values in workflow files and create terraform configuration files of AWS resources mentioned below.
 
 
 **Resources Needed**
@@ -150,33 +163,40 @@ This project automates deployment of a Node.js web application using GitHub Acti
 * Variables (variable.tf)
 * Terraform Cloud & AWS (provider.tf)
 
+  
+   <br><br>
 
-#### Update the following changes in the project files as below:
+
+>#### Update the following changes in the project files as below:
 
 * Edit aws.yaml file (ECS workflow) and update values in the env block as per our requirement.
   Set the condition block to trigger when when the Terraform workflow completes successfully. 
 
     ![alt text](image-1.png)
 
-  
+     <br><br>
+
 * Add the Test step in your workflow:
 
   ![alt text](image-4.png)
 
 
+   <br><br>
 
 * Edit terraform.yaml file (Terraform workflow) and comment out the last action for Terraform destroy. 
 
 
    ![Selection_7678](https://github.com/Akash-1704/ecs-fargate-terraform/assets/90324028/fc7a4357-396f-40b8-a51c-4eae2cb24954)
 
+   <br><br>
 
 
 * Modify Terraform provider settings in provider.tf by replacing organisation & workspace name with your terraform cloud account details.
 
+   <br><br>
   
 
-#### Push changes to the main branch to trigger workflows for deployment.
+>#### Push changes to the main branch to trigger workflows for deployment.
 
 
 
@@ -188,9 +208,10 @@ This project automates deployment of a Node.js web application using GitHub Acti
    
    ![alt text](image-8.png)
 
+   <br><br>
 
 
-### Explanation
+>### Explanation
 
 When we push some changes in any file to the main branch, our workflows will get triggered and start deploying our infra on AWS using Terraform & push our application’s docker image to ECR which will in turn update our ECS services as we have set the task definition to pick the latest image from our ECR.
 
@@ -200,14 +221,16 @@ Terraform will help to create our ECS cluster on AWS using Github workflow and E
 
 
 
+   <br><br>
 
 
-### Verification
+>### Verification
 
 Access the load balancer DNS to validate changes reflected in the deployed application.
 
+   <br><br>
 
-### Challenges Faced
+>### Challenges Faced
 
    - **CI/CD Integration with GitHub Actions:** Ensuring the ECS and Terraform workflows ran in the correct order. I resolved this by configuring the workflows in GitHub Actions with a specific trigger that ensured the ECS deployment would only start after Terraform finished its execution, thus preventing deployment errors.
 
