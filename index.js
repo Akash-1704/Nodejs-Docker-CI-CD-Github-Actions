@@ -5,7 +5,7 @@ var app = express();
 var server;
 
 app.set("port", process.env.PORT || 80);
-const greetingMessage = process.env.GREETING || 'Hello to Cloud & DevOps World !!!';
+const greetingMessage = process.env.GREETING || 'Hello to Cloud & DevOps World';
 
 app.get('/', function(req, res){
   res.send(greetingMessage);
